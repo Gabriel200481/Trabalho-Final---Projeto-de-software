@@ -1,0 +1,9 @@
+@startuml
+actor Aluno as aluno
+participant "Sistema MangoFit" as sys
+
+aluno -> sys : solicitarAulasDisponiveis(data, modalidade)
+sys --> aluno : retornaListaAulasComVagas()
+aluno -> sys : confirmarAgendamento(idTurma)
+sys --> aluno : retornaConfirmacaoAgendamento()
+@enduml
