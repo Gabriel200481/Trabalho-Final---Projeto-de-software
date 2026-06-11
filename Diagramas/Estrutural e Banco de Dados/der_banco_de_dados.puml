@@ -1,0 +1,70 @@
+@startuml
+!theme plain
+skinparam linetype ortho
+skinparam entity {
+  BackgroundColor White
+  BorderColor Black
+}
+
+entity "usuario" as usu {
+  * id : BIGINT <<PK>>
+  --
+  nome : VARCHAR(100)
+  cpf : VARCHAR(14)
+  email : VARCHAR(100)
+  tipo_usuario : VARCHAR(20)
+}
+
+entity "mensalidade" as mens {
+  * id : BIGINT <<PK>>
+  --
+  id_aluno : BIGINT <<FK>>
+  data_vencimento : DATE
+  valor : DECIMAL(10,2)
+  status : VARCHAR(20)
+}
+
+entity "ficha_treino" as ficha {
+  * id : BIGINT <<PK>>
+  --
+  id_aluno : BIGINT <<FK>>
+  id_instrutor : BIGINT <<FK>>
+  objetivo : VARCHAR(50)
+  data_criacao : DATE
+  status_ativa : BOOLEAN
+}
+
+entity "exercicio" as exe {
+  * id : BIGINT <<PK>>
+  --
+  id_ficha : BIGINT <<FK>>
+  nome : VARCHAR(100)
+  series : INT
+  repeticoes : INT
+  carga_kg : DECIMAL(5,2)
+}
+
+entity "turma_luta" as turma {
+  * id : BIGINT <<PK>>
+  --
+  modalidade : VARCHAR(50)
+  data_hora : TIMESTAMP
+  capacidade_max : INT
+  vagas_disponiveis : INT
+}
+
+entity "agendamento" as agend {
+  * id : BIGINT <<PK>>
+  --
+  id_aluno : BIGINT <<FK>>
+  id_turma : BIGINT <<FK>>
+  data_registro : TIMESTAMP
+}
+
+usu ||--o{ mens : "1:N"
+usu ||--o{ ficha : "1:N (como Aluno)"
+usu ||--o{ ficha : "1:N (como Instrutor)"
+ficha ||--|{ exe : "1:N"
+usu ||--o{ agend : "1:N"
+turma ||--o{ agend : "1:N"
+@enduml
