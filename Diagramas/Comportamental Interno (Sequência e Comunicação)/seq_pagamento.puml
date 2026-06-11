@@ -1,0 +1,25 @@
+@startuml
+actor Recepcionista as admin
+boundary "UI: Front-end" as view
+control "FinanceiroController" as controller
+entity "MensalidadeService" as service
+database "MensalidadeRepository" as repoMensalidade
+entity "AlunoService" as alunoService
+
+admin -> view : Confirmar Pagamento
+view -> controller : PUT /api/mensalidades/{id}/pagar
+controller -> service : processarPagamento(idFatura)
+
+service -> repoMensalidade : findById(idFatura)
+repoMensalidade --> service : faturaPendente
+service -> service : setStatus("Paga")
+service -> repoMensalidade : save(faturaAtualizada)
+repoMensalidade --> service : ok
+
+service -> alunoService : verificarEDesbloquearCatraca(fatura.getAlunoId())
+alunoService --> service : alunoDesbloqueado
+
+service --> controller : ReciboDTO
+controller --> view : 200 OK
+view --> admin : Atualiza grid para "Pago"
+@enduml
