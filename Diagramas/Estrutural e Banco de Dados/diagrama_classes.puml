@@ -1,0 +1,77 @@
+@startuml
+skinparam classAttributeIconSize 0
+!theme plain
+
+abstract class Usuario {
+  - id: Long
+  - nome: String
+  - cpf: String
+  - email: String
+  + realizarLogin(): Boolean
+}
+
+class Aluno {
+  - matricula: String
+  - statusCatraca: String
+  + verificarInadimplencia(): Boolean
+}
+
+class Instrutor {
+  - cref: String
+  - especialidade: String
+}
+
+class Recepcionista {
+  - turno: String
+}
+
+class Mensalidade {
+  - id: Long
+  - dataVencimento: Date
+  - valor: Double
+  - status: String
+  + registrarPagamento(metodo: String): void
+}
+
+class FichaDeTreino {
+  - id: Long
+  - objetivo: String
+  - dataCriacao: Date
+  - statusAtiva: Boolean
+}
+
+class Exercicio {
+  - id: Long
+  - nome: String
+  - series: Integer
+  - repeticoes: Integer
+  - cargaKg: Double
+}
+
+class TurmaLuta {
+  - id: Long
+  - modalidade: String
+  - dataHora: DateTime
+  - capacidadeMaxima: Integer
+  - vagasDisponiveis: Integer
+  + decrementarVaga(): Boolean
+}
+
+class Agendamento {
+  - id: Long
+  - dataRegistro: DateTime
+}
+
+Usuario <|-- Aluno
+Usuario <|-- Instrutor
+Usuario <|-- Recepcionista
+
+Aluno "1" -- "0..*" Mensalidade : possui >
+Aluno "1" -- "0..*" FichaDeTreino : realiza >
+Instrutor "1" -- "0..*" FichaDeTreino : prescreve >
+
+FichaDeTreino "1" *-- "1..*" Exercicio : contem >
+
+Aluno "1" -- "0..*" Agendamento : faz >
+TurmaLuta "1" -- "0..*" Agendamento : recebe >
+@enduml
