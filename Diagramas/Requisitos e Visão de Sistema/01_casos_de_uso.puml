@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle hollow
+
+actor "Aluno" as aluno
+actor "Instrutor" as instrutor
+actor "Recepcionista" as admin
+actor "<<Hardware>>\nCatraca Eletrônica" as catraca
+
+rectangle "Mango Fit Academia - Sistema de Gestão" {
+  usecase "UC-01: Realizar Check-in na Catraca" as UC1
+  usecase "UC-02: Agendar Aula (Jiu-Jitsu/Muay Thai)" as UC2
+  usecase "UC-03: Visualizar Ficha de Treino" as UC3
+  usecase "UC-04: Montar Periodização de Treino" as UC4
+  usecase "UC-05: Registrar Pagamento de Mensalidade" as UC5
+  usecase "UC-06: Cadastrar Novo Aluno" as UC6
+}
+
+aluno --> UC1
+aluno --> UC2
+aluno --> UC3
+
+instrutor --> UC3
+instrutor --> UC4
+
+admin --> UC5
+admin --> UC6
+catraca --> UC1
+@enduml
