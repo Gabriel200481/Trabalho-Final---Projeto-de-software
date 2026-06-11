@@ -1,0 +1,31 @@
+@startuml
+!theme plain
+skinparam state {
+  BackgroundColor White
+  BorderColor Black
+}
+
+title Diagrama de Estados - Ciclo de Vida da Mensalidade
+
+[*] --> Pendente : Fatura Gerada (Início do Ciclo)
+
+Pendente --> Paga : registrarPagamento() [Antes do vencimento]
+Pendente --> Atrasada : [Data atual > Data de Vencimento]
+Atrasada --> Paga : registrarPagamento() [Pagamento com/sem juros]
+
+Pendente --> Cancelada : cancelarFatura() / Isenção
+Atrasada --> Cancelada : cancelarMatricula() / Inadimplência
+
+Paga --> [*]
+Cancelada --> [*]
+
+note right of Atrasada
+  Neste estado, o sistema aciona
+  o bloqueio automático na catraca.
+end note
+
+note right of Paga
+  Atingindo este estado, o sistema
+  libera a catraca para o aluno.
+end note
+@enduml
