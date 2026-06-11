@@ -1,0 +1,9 @@
+@startuml
+actor Recepcionista as admin
+participant "Sistema MangoFit" as sys
+
+admin -> sys : consultarFaturas(matricula)
+sys --> admin : retornaFaturasPendentes()
+admin -> sys : registrarPagamento(idFatura, metodoPagamento)
+sys --> admin : retornaReciboEAtualizaStatus()
+@enduml
