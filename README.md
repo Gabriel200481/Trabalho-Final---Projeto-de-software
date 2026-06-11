@@ -1,4 +1,6 @@
-<a href="#"><img src="https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg" width="200"/></a> <a href="#"><img src="https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg" width="250"/></a>
+<!-- Este template foi criado para servir como referência e pode ser facilmente adaptado para diferentes projetos de desenvolvimento -->
+
+<a href="#"><img src="[https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)" width="200"/></a> <a href="#"><img src="[https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)" width="250"/></a>
 
 ---
 
@@ -16,7 +18,7 @@
     </td>
     <td>
       <div>
-        <img src="https://joaopauloaramuni.github.io/image/logo_ES_vertical.png" alt="Logo do Projeto" width="120px"/>
+        <img src="https://placehold.co/120x120/F97316/white?text=Mango+Fit" alt="Logo do Projeto" width="120px" style="border-radius: 15px;"/>
       </div>
     </td>
   </tr> 
@@ -37,7 +39,6 @@
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Arquitetura](#-arquitetura)
 - [Instalação e Execução](#-instalação-e-execução)
-- [Deploy](#-deploy)
 - [Estrutura de Pastas](#-estrutura-de-pastas)
 - [Autores](#-autores)
 
@@ -45,7 +46,7 @@
 
 ## 🔗 Links Úteis
 * 🌐 **Demo Online:** [Apenas Documentação Acadêmica](#)
-* 📖 **Documentação:** [Leia a Wiki com Diagramas PlantUML](#)
+* 📖 **Documentação:** [Acesse a pasta de Diagramas PlantUML](https://github.com/Gabriel200481/Trabalho-Final---Projeto-de-software/tree/main/Diagramas)
 
 ---
 
@@ -92,18 +93,6 @@ O sistema Mango Fit utiliza uma arquitetura baseada em **Camadas (Layered Archit
 
 O modelo segue o padrão **Cliente-Servidor**. O Front-end é uma Single Page Application (SPA) que consome dados de forma assíncrona da API RESTful do Spring Boot.
 
-### Exemplos de diagramas
-
-*(Diagramas detalhados estão disponíveis no documento PlantUML oficial do projeto)*
-
-| Diagrama de Arquitetura | Detalhe da Arquitetura |
-| :---: | :---: |
-| **Visão Geral (Macro C4)** | **Camada de Serviço (Micro)** |
-| <img src="https://joaopauloaramuni.github.io/image/aramunilogo.png" alt="Diagrama de Visão Geral do Sistema" width="120px" height="120px"> | <img src="https://joaopauloaramuni.github.io/image/aramunilogo.png" alt="Diagrama de Componentes" width="120px" height="120px"> |
-| **Modelo de Dados (DER)** | **Ciclo de Vida (Estados)** |
-| <img src="https://joaopauloaramuni.github.io/image/aramunilogo.png" alt="Diagrama de Entidade-Relacionamento" width="120px" height="120px"> | <img src="https://joaopauloaramuni.github.io/image/aramunilogo.png" alt="Diagrama de Estados da Mensalidade" width="120px" height="120px"> |
-
----
 
 ## 🔧 Instalação e Execução (Estrutura Fictícia)
 
@@ -115,12 +104,12 @@ O modelo segue o padrão **Cliente-Servidor**. O Front-end é uma Single Page Ap
 ### 🔑 Variáveis de Ambiente
 
 Crie o arquivo `.env.local` na pasta `/frontend`:
-```env
+~~~env
 VITE_API_URL=http://localhost:8080/api
-```
+~~~
 
 Configure no `application.yml` do Spring Boot (`/backend/src/main/resources`):
-```yaml
+~~~yaml
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/mangofit_db
@@ -129,34 +118,35 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-```
+~~~
 
 ### ⚡ Como Executar a Aplicação
 
 **Terminal 1: Back-end (Spring Boot)**
-```bash
+~~~bash
 cd backend
 ./mvnw spring-boot:run
-```
+~~~
 
 **Terminal 2: Front-end (React, Vite)**
-```bash
+~~~bash
 cd frontend
 npm install
 npm run dev
-```
+~~~
 
 ---
 
 ## 📂 Estrutura de Pastas
 
-## 📂 Estrutura de Pastas
+Como este repositório é focado 100% na modelagem e documentação arquitetural do sistema, a estrutura de arquivos reflete a organização dos diagramas em código-fonte (PlantUML) e a documentação oficial:
 
-Como este repositório é focado 100% na modelagem e documentação arquitetural do sistema, a estrutura de arquivos reflete a organização dos diagramas em código-fonte (PlantUML):
-
-```text
+~~~text
 Trabalho-Final---Projeto-de-software/
 ├── README.md                                          # 📘 Documentação principal do projeto
+├── /Documentação                                      # 📄 Documentos textuais oficiais
+│   └── Trabalho 2 - Preenchido - Documentação de Projeto - 20 pontos.pdf
+│
 └── /Diagramas                                         # 📂 Código-fonte PlantUML dos diagramas
     ├── /Arquitetura e Implantação                     # 🏗️ Visão estrutural e de infraestrutura
     │   ├── arquitetura_geral.puml
@@ -181,16 +171,14 @@ Trabalho-Final---Projeto-de-software/
         ├── dss_agendar_aula.puml
         ├── dss_montar_treino.puml
         └── dss_pagamento.puml
-```
+~~~
 
 ---
 
 ## 👥 Autores
-
 | 👤 Nome | 🖼️ Foto | :octocat: GitHub | 💼 LinkedIn | 📤 Gmail |
 |---------|----------|-----------------|-------------|-----------|
-| Gabriel Afonso Infante Vieira | <div align="center"><img src="https://joaopauloaramuni.github.io/image/aramunilogo.png" width="70px" height="70px"></div> | <div align="center"><a href="https://github.com/Gabriel200481"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div> | <div align="center"><a href="#"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div> | <div align="center"><a href="mailto:Gabrielvieira200481@gmail.com"><img src="https://joaopauloaramuni.github.io/image/gmail3.png" width="50px" height="50px"></a></div> |
-
+| Gabriel Afonso Infante Vieira | <div align="center"><img src="https://github.com/Gabriel200481.png" width="70px" height="70px"/></div> | <div align="center"><a href="https://github.com/Gabriel200481"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div> | <div align="center"><a href="#"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div> | <div align="center"><a href="mailto:Gabrielvieira200481@gmail.com"><img src="https://joaopauloaramuni.github.io/image/gmail3.png" width="50px" height="50px"></a></div> |
 ---
 
 ## 🙏 Agradecimentos
