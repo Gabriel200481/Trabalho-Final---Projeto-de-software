@@ -1,0 +1,30 @@
+@startuml
+actor Aluno as aluno
+boundary "UI: Front-end" as view
+control "AgendamentoController" as controller
+entity "TurmaService" as service
+database "TurmaRepository" as repoTurma
+database "AgendamentoRepository" as repoAgend
+
+aluno -> view : Clica em "Confirmar Agendamento"
+view -> controller : POST /api/agendamentos {idTurma}
+controller -> service : realizarAgendamento(idTurma, idAluno)
+
+service -> repoTurma : findById(idTurma)
+repoTurma --> service : turma
+service -> service : verificarVagasDisponiveis()
+
+opt Vagas > 0
+    service -> repoAgend : save(novoAgendamento)
+    repoAgend --> service : agendamentoSalvo
+    service -> repoTurma : decrementarVaga(idTurma)
+    repoTurma --> service : atualizado
+    service --> controller : AgendamentoDTO (Sucesso)
+    controller --> view : 201 Created
+    view --> aluno : Exibe modal "Aula Agendada!"
+else Vagas == 0
+    service --> controller : Exception("Turma Lotada")
+    controller --> view : 400 Bad Request
+    view --> aluno : Exibe erro "Não há vagas"
+end
+@enduml
