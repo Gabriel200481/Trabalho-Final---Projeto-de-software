@@ -1,0 +1,31 @@
+@startuml
+!theme plain
+skinparam node {
+  BackgroundColor White
+  BorderColor Black
+}
+
+node "Dispositivo do Usuário" <<Smartphone / PC>> {
+  node "Navegador Web" {
+    artifact "MangoFit Front-end\n(Arquivos Estáticos JS/CSS)" as front
+  }
+}
+
+node "Infraestrutura Local da Academia" {
+  node "Catraca Eletrônica" <<Hardware / IoT>> {
+     artifact "Firmware de Controle" as catraca
+  }
+}
+
+node "Servidor de Aplicação" <<Nuvem / AWS EC2>> {
+  artifact "MangoFit API\n(Arquivo .jar executável)" as api
+}
+
+node "Servidor de Banco de Dados" <<Nuvem / AWS RDS>> {
+  database "PostgreSQL 16" as db
+}
+
+front --> api : HTTPS / TCP (Porta 443)
+catraca --> api : HTTPS / REST
+api --> db : JDBC / TCP (Porta 5432)
+@enduml
