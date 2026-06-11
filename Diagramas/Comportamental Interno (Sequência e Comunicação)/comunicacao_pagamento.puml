@@ -1,0 +1,20 @@
+@startuml
+!theme plain
+skinparam rectangle {
+    BackgroundColor White
+    BorderColor Black
+}
+
+actor "Recepcionista" as admin
+rectangle ": InterfaceWeb" as ui
+rectangle ": FinanceiroController" as ctrl
+rectangle ": MensalidadeService" as srv
+rectangle ": MensalidadeRepository" as repoMensalidade
+rectangle ": AlunoService" as alunoSrv
+
+admin -right-> ui : 1: confirmarPagamento()
+ui -right-> ctrl : 1.1: PUT /api/mensalidades/{id}/pagar
+ctrl -down-> srv : 1.1.1: processarPagamento(idFatura)
+srv -left-> repoMensalidade : 1.1.1.1: findById(idFatura)\n1.1.1.2: save(faturaAtualizada)
+srv -right-> alunoSrv : 1.1.1.3: verificarEDesbloquearCatraca()
+@enduml
