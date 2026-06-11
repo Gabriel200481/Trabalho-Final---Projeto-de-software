@@ -1,0 +1,24 @@
+@startuml
+actor Instrutor as instrutor
+boundary "UI: Front-end" as view
+control "TreinoController" as controller
+entity "FichaTreinoService" as service
+database "FichaRepository" as repoFicha
+database "ExercicioRepository" as repoExercicio
+
+instrutor -> view : Salvar Periodização
+view -> controller : POST /api/treinos {matricula, fichaDTO}
+controller -> service : criarNovaFicha(matricula, fichaDTO)
+
+service -> repoFicha : save(novaFicha)
+repoFicha --> service : fichaSalva (com ID gerado)
+
+loop Para cada Exercicio na lista
+    service -> repoExercicio : save(exercicio, fichaId)
+    repoExercicio --> service : exercicioSalvo
+end
+
+service --> controller : FichaDetalhadaDTO
+controller --> view : 201 Created
+view --> instrutor : Redireciona para listagem de alunos
+@enduml
