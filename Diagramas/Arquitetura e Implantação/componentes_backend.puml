@@ -1,0 +1,29 @@
+@startuml
+!theme plain
+skinparam componentStyle rectangle
+
+package "Front-end (SPA)" {
+  [Interface de Usuário\n(React)] as UI
+}
+
+package "Back-end (API Spring Boot)" {
+  [Controlador de Autenticação\n(Segurança/JWT)] as Auth
+  [Módulo de Treinos\n(Hipertrofia)] as Treino
+  [Módulo de Agendamentos\n(Lutas/Turmas)] as Agendamento
+  [Módulo Financeiro\n(Mensalidades)] as Financeiro
+}
+
+database "Armazenamento" {
+  [PostgreSQL] as DB
+}
+
+UI --> Auth : REST / JSON
+UI --> Treino : REST / JSON
+UI --> Agendamento : REST / JSON
+UI --> Financeiro : REST / JSON
+
+Auth --> DB : JPA / SQL
+Treino --> DB : JPA / SQL
+Agendamento --> DB : JPA / SQL
+Financeiro --> DB : JPA / SQL
+@enduml
