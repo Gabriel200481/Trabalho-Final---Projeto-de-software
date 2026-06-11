@@ -1,0 +1,20 @@
+@startuml
+!theme plain
+skinparam rectangle {
+    BackgroundColor White
+    BorderColor Black
+}
+
+actor "Instrutor" as instrutor
+rectangle ": InterfaceWeb" as ui
+rectangle ": TreinoController" as ctrl
+rectangle ": FichaTreinoService" as srv
+rectangle ": FichaRepository" as repoFicha
+rectangle ": ExercicioRepository" as repoExercicio
+
+instrutor -right-> ui : 1: salvarPeriodizacao()
+ui -right-> ctrl : 1.1: POST /api/treinos
+ctrl -down-> srv : 1.1.1: criarNovaFicha(matricula, fichaDTO)
+srv -left-> repoFicha : 1.1.1.1: save(novaFicha)
+srv -right-> repoExercicio : 1.1.1.2: *[para cada exercicio] save(exercicio)
+@enduml
