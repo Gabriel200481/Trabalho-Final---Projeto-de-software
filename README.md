@@ -150,22 +150,37 @@ npm run dev
 
 ## 📂 Estrutura de Pastas
 
+## 📂 Estrutura de Pastas
+
+Como este repositório é focado 100% na modelagem e documentação arquitetural do sistema, a estrutura de arquivos reflete a organização dos diagramas em código-fonte (PlantUML):
+
 ```text
-mangofit/
-├── README.md                    # Documentação principal
-├── /docs                        # Arquivos do Word e PlantUML
-├── /frontend                    # Estrutura SPA Front-end
-│   ├── /src/components          # Componentes visuais (Cards de Treino, Modais)
-│   ├── /src/pages               # Telas (Dashboard Admin, Painel do Aluno)
-│   └── package.json
-└── /backend                     # Estrutura API Back-end
-    ├── /src/main/java           # Camadas Java
-    │   └── /com/mangofit/api
-    │       ├── /controller      # Endpoints (Treinos, Financeiro, Agendamento)
-    │       ├── /service         # Regras de Negócio (Bloqueio Catraca)
-    │       ├── /model           # Entidades JPA (Aluno, Instrutor, Ficha)
-    │       └── /repository      # Interfaces Spring Data JPA
-    └── /src/main/resources      # Configurações do Banco de Dados
+Trabalho-Final---Projeto-de-software/
+├── README.md                                          # 📘 Documentação principal do projeto
+└── /Diagramas                                         # 📂 Código-fonte PlantUML dos diagramas
+    ├── /Arquitetura e Implantação                     # 🏗️ Visão estrutural e de infraestrutura
+    │   ├── arquitetura_geral.puml
+    │   ├── componentes_backend.puml
+    │   └── implantacao.puml
+    │
+    ├── /Comportamental Interno                        # 🔄 Interações e ciclos de vida
+    │   ├── comunicacao_agendar.puml
+    │   ├── comunicacao_pagamento.puml
+    │   ├── comunicacao_treino.puml
+    │   ├── estados_mensalidade.puml
+    │   ├── seq_agendar_aula.puml
+    │   ├── seq_montar_treino.puml
+    │   └── seq_pagamento.puml
+    │
+    ├── /Estrutural e Banco de Dados                   # 🗄️ Entidades, atributos e relacionamentos
+    │   ├── der_banco_de_dados.puml
+    │   └── diagrama_classes.puml
+    │
+    └── /Requisitos e Visão de Sistema                 # 👤 Atores, casos de uso e visão caixa-preta
+        ├── casos_de_uso.puml
+        ├── dss_agendar_aula.puml
+        ├── dss_montar_treino.puml
+        └── dss_pagamento.puml
 ```
 
 ---
