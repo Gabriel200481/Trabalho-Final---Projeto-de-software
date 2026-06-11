@@ -1,0 +1,9 @@
+@startuml
+actor Instrutor as instrutor
+participant "Sistema MangoFit" as sys
+
+instrutor -> sys : buscarAluno(matricula)
+sys --> instrutor : retornaDadosEHistoricoAluno()
+instrutor -> sys : salvarPeriodizacao(matricula, objetivo, listaExercicios)
+sys --> instrutor : retornaConfirmacaoFichaSalva()
+@enduml
