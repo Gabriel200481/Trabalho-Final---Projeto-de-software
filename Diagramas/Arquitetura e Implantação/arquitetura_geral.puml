@@ -1,0 +1,31 @@
+@startuml
+!theme plain
+skinparam componentStyle rectangle
+skinparam node {
+  BackgroundColor White
+  BorderColor Black
+}
+
+actor "Usuários\n(Aluno, Instrutor, Admin)" as usuarios
+actor "<<Hardware>>\nCatraca Eletrônica" as catraca
+
+node "Ambiente Cliente (Navegador / Mobile)" {
+  component "Aplicação Web (SPA)\n[React + Tailwind CSS]" as frontend
+}
+
+node "Ambiente Servidor (Nuvem)" {
+  component "API RESTful\n[Spring Boot / Java]" as api
+  component "Módulo de Autenticação\n[Spring Security / JWT]" as auth
+}
+
+database "Servidor de Banco de Dados" {
+  component "Banco de Dados Relacional\n[PostgreSQL]" as db
+}
+
+usuarios --> frontend : Acessa interface gráfica
+catraca --> api : Valida status via HTTP
+frontend --> auth : Solicita Login / Token
+frontend --> api : Requisições HTTP/JSON (Regras de Negócio)
+api --> db : Leituras e Escritas (JPA / Hibernate)
+auth --> db : Valida credenciais
+@enduml
